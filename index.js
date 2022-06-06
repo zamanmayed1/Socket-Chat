@@ -17,7 +17,8 @@ io.on('connection', (socket) => {
 
     // recive chat
     socket.on('chat', (data) => {
-        console.log(data);
+        io.emit('chatShow', data)
+
     })
 
     socket.on('disconnect', () => {

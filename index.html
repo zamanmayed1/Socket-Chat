@@ -16,28 +16,28 @@
     <h2 class="text-center text-xl font-bold text-blue-700">Socket Group Chat</h2>
     <hr class="my-2">
 
-    <div class="w-full shadow-sm  rounded-md p-5 my-10">
-        <ul class="history">
-            <div class="my-2">
-                <li class="list-none px-3 inline-block py-2 font-bold bg-blue-100 rounded-lg">Hi, Mr Hasibul Vai !</li>
-            </div>
-
-
-
+    <div class="w-full h-[55vh] overflow-y-scroll shadow-sm  rounded-md p-5 my-10">
+        <ul id="history">
         </ul>
 
+
     </div>
 
-    <div class="absolute inset-x-0 bottom-10 w-full ">
-        <div class="flex  justify-center	mt-16 ">
-            <input id="message"
-                class="border focus:ring-indigo-500 focus:border-indigo-500 block w-3/4 md:w-2/4 pl-7 pr-12  border-gray-300 text-xl rounded-md px-3 py-2 "
-                type="text">
-            <button onclick="sendMessage()"
-                class="px-5 py-3 bg-blue-500 font-bold text-white mx-3 rounded-md">Send</button>
 
-        </div>
+
+
+
     </div>
+
+
+    <div class="flex  justify-center ">
+        <input id="message" required
+            class="border focus:ring-indigo-500 focus:border-indigo-500 block w-3/4 md:w-2/4 pl-7 pr-12  border-gray-300 text-xl rounded-md px-3 py-2 "
+            type="text">
+        <button onclick="sendMessage()" class="px-5 py-3 bg-blue-500 font-bold text-white mx-3 rounded-md">Send</button>
+
+    </div>
+
 
 
 
@@ -51,10 +51,24 @@
         const socket = io();
 
         const sendMessage = () => {
-            let display = document.getElementById('history')
             let message = document.getElementById('message').value
-            socket.emit('chat', message)
+            if (message != '') {
+                socket.emit('chat', message)
+            }
         }
+
+        socket.on('chatShow', (data) => {
+            let display = document.getElementById('history')
+            let chat = document.createElement('li')
+            chat.innerHTML =
+                `
+                <li class="list-none px-3 my-2 inline-block py-2 font-bold bg-blue-100 rounded-lg">${data}</li>
+            `
+            display?.appendChild(chat)
+            let message = document.getElementById('message').value = ''
+            history.scrollTop = history.scrollHeight;
+
+        })
     </script>
 </body>
 
