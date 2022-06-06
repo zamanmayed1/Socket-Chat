@@ -6,7 +6,7 @@ const expressServer = http.createServer(app)
 const { Server } = require("socket.io")
 const io = new Server(expressServer)
 
-const hostname = '0.0.0.0'
+const port = process.env.PORT || 3000
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/index.html")
@@ -32,6 +32,6 @@ io.on('connection', (socket) => {
 
 
 // 
-expressServer.listen(3000, hostname, () => {
+expressServer.listen(port, () => {
     console.log('Server Running');
 })
