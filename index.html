@@ -15,10 +15,29 @@
     <img class="w-12 h-12 block mx-auto" src="https://img.icons8.com/color/2x/chat--v3.gif" alt="">
     <h2 class="text-center text-xl font-bold text-blue-700">Socket Group Chat</h2>
 
+    <div class="w-full shadow-sm  rounded-md p-5 my-10">
+        <ul class="history">
+            <div class="my-2">
+                <li class="list-none px-3 inline-block py-2 bg-blue-100 rounded-lg">Hi Mr Hasibul Vai</li>
+            </div>
+            <div class="my-2">
+                <li class="list-none px-3 inline-block py-2 bg-blue-100 rounded-lg">Ji Vai Bolen</li>
+            </div>
+            <div class="my-2">
+                <li class="list-none px-3 inline-block py-2 bg-blue-100 rounded-lg">Na Vai Eito</li>
+            </div>
 
+        </ul>
 
+    </div>
 
+    <div class="flex justify-center	mt-16 ">
+        <input id="message"
+            class="border focus:ring-indigo-500 focus:border-indigo-500 block w-3/4 md:w-2/4 pl-7 pr-12  border-gray-300 text-xl rounded-md px-3 py-2 "
+            type="text">
+        <button onclick="sendMessage()" class="px-5 py-3 bg-blue-500 font-bold text-white mx-3">Send</button>
 
+    </div>
 
 
 
@@ -30,6 +49,11 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
+
+        const sendMessage = () => {
+            let display = document.getElementById('history')
+            let message = document.getElementById('message')
+        }
     </script>
 </body>
 
